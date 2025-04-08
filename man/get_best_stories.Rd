@@ -16,16 +16,13 @@ list of best stories
 \description{
 Retrieves best stories using Hacker News API
 }
-\details{
-Parallel api requests can be enabled by running
-\code{future::plan(future::multiprocess)}
-}
 \examples{
+
+\donttest{
 # get the best story on Hacker News
 best_story <- get_best_stories(max_items = 1)
 best_story
 
-\donttest{
 # get top 20 best stories on Hacker News
 best_20_stories <- get_best_stories(max_items = 20)
 best_20_stories

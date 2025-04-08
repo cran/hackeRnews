@@ -16,16 +16,13 @@ list of latest job stories
 \description{
 Retrieves latest job stories using Hacker News API
 }
-\details{
-Parallel api requests can be enabled by running
-\code{future::plan(future::multiprocess)}
-}
 \examples{
+
+\donttest{
 # get the latest job story on Hacker News
 latest_job_story <- get_latest_job_stories(max_items = 1)
 latest_job_story
 
-\donttest{
 # get 10 latest job stories on Hacker News
 latest_10_job_stories <- get_latest_job_stories(max_items = 10)
 latest_10_job_stories

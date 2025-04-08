@@ -16,18 +16,11 @@ list of hn_item objects
 Retrieves items
 corresponding to specified list of ids using Hacker News API
 }
-\details{
-Parallel api requests can be enabled by running
-\code{future::plan(future::multiprocess)}
-}
 \examples{
+\donttest{
 # retrieve the first two items on Hacker News
 items <- get_items_by_ids(c(1,2))
 items
-
-
 }
-\seealso{
-https://github.com/HenrikBengtsson/future
-https://github.com/HenrikBengtsson/future.apply
+
 }

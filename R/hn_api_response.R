@@ -6,6 +6,8 @@
 #' @return object representing a response from the
 #' Hacker News API
 #'
+#' @noRd
+#'
 create_hn_api_response <- function(response) {
   parsed_content <- parse_json(response)
 
@@ -26,6 +28,8 @@ create_hn_api_response <- function(response) {
 #'
 #' @return TRUE if the object is of the class hn_api_response
 #'
+#' @noRd
+#'
 is_hn_api_response <- function(x) {
   inherits(x, "hn_api_response")
 }
@@ -35,6 +39,8 @@ is_hn_api_response <- function(x) {
 #' @param x hn_api_response object to retrieve content from
 #'
 #' @return content of the given hn_api_response object
+#'
+#' @noRd
 #'
 get_content <- function(x) {
   assert(is_hn_api_response(x))
@@ -47,22 +53,25 @@ get_content <- function(x) {
 #'
 #' @param hn_api_response hn_api_response object to be checked
 #'
+#' @noRd
+#'
 #'
 validate_hn_api_response <- function(hn_api_response) {
-  assert(!httr::http_error(hn_api_response$response),
+  assert(!httr2::resp_is_error(hn_api_response$response),
          sprintf("The request resulted with an error [%s]\n%s\n<%s>",
                  hn_api_response$response$status_code,
                  hn_api_response$content,
                  hn_api_response$path))
   if (is.null(hn_api_response$content)) {
     warning(
-       sprintf("The content of the response is empty!\n<%s>", hn_api_response$path)
+      sprintf("The content of the response is empty!\n<%s>", hn_api_response$path)
     )
   }
 }
 
 
 #' @export
+#' @importFrom utils str
 print.hn_api_response <- function(x, ...) {
   cat(sprintf("---HN API RESPONSE [%s][%s]---", x$path, x$response$status_code))
   utils::str(x$content)
